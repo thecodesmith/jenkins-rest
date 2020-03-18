@@ -9,11 +9,13 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.artifactory'
-apply plugin: 'com.github.johnrengelman.shadow'
+plugins {
+    id 'java'
+    id 'maven'
+    id 'maven-publish'
+    id 'com.jfrog.artifactory' version '4.10.0'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
 
 apply from: "$rootDir/gradle/additional-artifacts.gradle"
 apply from: "$rootDir/gradle/dependencies.gradle"
@@ -36,7 +38,7 @@ dependencies {
     compile ('com.google.auto.service:auto-service:1.0-rc6')
     compile ('com.google.auto.value:auto-value-annotations:1.6.6')
     compileOnly ('com.google.auto.value:auto-value:1.6.6')
-    
+
     testCompile ("org.apache.jclouds:jclouds-core:${jcloudsVersion}:tests")
     testCompile ("org.apache.jclouds.driver:jclouds-slf4j:${jcloudsVersion}")
     testCompile ('org.testng:testng:6.11')
